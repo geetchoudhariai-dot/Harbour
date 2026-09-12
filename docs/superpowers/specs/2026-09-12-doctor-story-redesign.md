@@ -2,34 +2,35 @@
 
 ## Goal
 
-Replace the separate doctor introduction and notebook-style letter with one cohesive editorial profile that feels calm, personal, and credible within Harbour View Dental's existing coastal design language.
+Remove the separate doctor introduction and replace the notebook-style letter with one cohesive personal note that feels calm, credible, and consistent with Harbour View Dental's coastal design language.
 
 ## Design direction
 
-Use a unified two-column profile inspired by the portrait balance of Headspace, the readable founder-letter measure of incident.io, and the healthcare warmth of Titan Intake.
+Use Handshake's framed letter surface and Ada's typographic hierarchy, adapted to the site's existing portrait and coastal palette.
 
-The section remains in the site's light theme and uses its established blue, paper, ink, radius, and button tokens. It does not introduce glass, ruled paper, decorative stationery, or a second visual language.
+The section remains in the site's light theme and uses its established blue, paper, ink, radius, and button tokens. It uses a clean letter surface without ruled paper, decorative stationery, glass, or a second visual language.
 
 ## Desktop composition
 
 - Keep the existing `#doctor` section anchor and accessible Dr. Gary label.
-- Place the entire profile inside one restrained pale-blue coastal panel.
-- Use an asymmetric 5/7 grid.
+- Place the personal note inside one restrained pale-blue coastal panel.
+- Use an asymmetric 4/8 grid.
 - Left column:
+  - "A personal note from Dr. Gary" heading.
   - Tall Dr. Gary portrait.
   - Small identity block with name and role directly below the image.
 - Right column:
-  - Small "Meet Dr. Gary" label.
-  - The current statement becomes the large opening pull quote.
+  - Clean warm-white letter sheet.
+  - The current statement becomes the large Ada-inspired pull quote within the letter.
   - Full existing story remains visible in a readable column.
   - Handwritten signature closes the story.
-  - "Book a visit" is the only CTA in the section.
-- Remove the separate intro band, "View services" action, sticky portrait behavior, notebook ruling, red margin line, and paper-card simulation.
+  - "Book a visit" follows the signature as the only CTA in the section.
+- Remove the entire `.about-doctor-intro` band, "View services" action, sticky portrait behavior, notebook ruling, and red margin line.
 
 ## Responsive composition
 
 - At 1080px and below, use a single column.
-- Order: label, pull quote, portrait, identity, full story, signature, CTA.
+- Order: heading, portrait, identity, letter pull quote, full story, signature, CTA.
 - Use a landscape portrait crop on tablet to control section height.
 - Use a near-square portrait crop on mobile.
 - Keep body text at a comfortable measure and preserve existing tap-target sizing.
@@ -39,7 +40,7 @@ The section remains in the site's light theme and uses its established blue, pap
 - Panel background: a subtle tint from existing `--sage`, `--sky`, and `--paper` tokens.
 - Panel radius: existing `--r-2xl`.
 - Portrait radius: existing `--r-xl`.
-- Use one structural hairline only where it separates the opening quote from the story body.
+- Use one structural hairline inside the letter to separate the opening quote from the story body.
 - Keep the existing Hanken Grotesk body type and Caveat signature.
 - Use the existing mint primary button without inventing a new button style.
 - No decorative dots, glass blur, gradients on text, or excessive shadows.
@@ -56,9 +57,9 @@ The section remains in the site's light theme and uses its established blue, pap
 ## Content
 
 - Preserve the complete doctor story and its current voice.
-- Preserve the current statement text as the section's opening pull quote.
+- Move the current statement text into the letter as its opening pull quote.
 - Preserve Dr. Gary's name, role, portrait, and signature.
-- Remove only the redundant "Led by Dr. Gary" introduction and "View services" CTA.
+- Remove the entire redundant introduction band and its "View services" CTA.
 
 ## Acceptance criteria
 
