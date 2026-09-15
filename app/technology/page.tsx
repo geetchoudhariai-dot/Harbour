@@ -3,7 +3,9 @@ import { Check, ChevronDown } from "lucide-react";
 import PageHero from "../components/page-hero";
 import SectionHead from "../components/section-head";
 import { BtnLink } from "../components/ui";
+import JsonLd from "../components/json-ld";
 import { careScenes, technology } from "../lib/site";
+import { breadcrumbList, webPage } from "../lib/schema";
 import { pageMetadata } from "../lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -86,11 +88,35 @@ const detailCopy: Record<string, string[]> = {
   ]
 };
 
+const technologySchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "Technology", path: "/technology" }
+    ]),
+    {
+      ...webPage({
+        path: "/technology",
+        name: "Dental Technology at Harbour View Dental",
+        description:
+          "CEREC same-day crowns, digital X-rays, cone beam imaging, and intraoral scanning at Harbour View Dental in Port Alberni, BC."
+      }),
+      mentions: technology.map((item) => ({
+        "@type": "Thing",
+        name: item.title,
+        description: item.copy
+      }))
+    }
+  ]
+};
+
 export default function TechnologyPage() {
   const byTitle = new Map(technology.map((item) => [item.title, item]));
 
   return (
     <>
+      <JsonLd data={technologySchema} />
       <PageHero
         eyebrow="Our technology"
         title="Modern tools, gentler visits"
@@ -120,7 +146,7 @@ export default function TechnologyPage() {
             {process.map(([title, copy], index) => (
               <article className="tech-process-step fade-up" key={title}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{title}</h3>
+                <h3 className="tech-process-title">{title}</h3>
                 <p>{copy}</p>
               </article>
             ))}

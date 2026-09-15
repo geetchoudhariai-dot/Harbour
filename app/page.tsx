@@ -3,10 +3,13 @@ import Link from "next/link";
 import { ArrowUpRight, Phone } from "lucide-react";
 import BookingFaq from "./components/booking-faq";
 import HeroSlideshow from "./components/hero-slideshow";
+import JsonLd from "./components/json-ld";
 import RatingBlock from "./components/rating-block";
 import SectionHead from "./components/section-head";
 import TeamGrid from "./components/team-grid";
 import { BtnLink } from "./components/ui";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, pageMetadata } from "./lib/seo";
+import { faqPage, webPage, WEBPAGE_ID } from "./lib/schema";
 import {
   SITE,
   faqs,
@@ -19,19 +22,34 @@ import {
   values
 } from "./lib/site";
 
+export const metadata = pageMetadata({
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
+  path: ""
+});
+
 const homeFaqs = faqs.map((item) => ({
   ...item,
   answer: item.answer.replaceAll("Dr. Gary", "Dr. Gaurav")
 }));
 
-const faqSchema = {
+const homeSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: homeFaqs.slice(0, 6).map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: { "@type": "Answer", text: item.answer }
-  }))
+  "@graph": [
+    {
+      ...webPage({
+        path: "",
+        name: DEFAULT_TITLE,
+        description: DEFAULT_DESCRIPTION,
+        id: WEBPAGE_ID
+      }),
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: [".hero-kicker", ".hero-lede", ".statement"]
+      }
+    },
+    faqPage(homeFaqs)
+  ]
 };
 
 const glanceStats = [stats[2], stats[1], stats[3]];
@@ -39,9 +57,8 @@ const glanceStats = [stats[2], stats[1], stats[3]];
 export default function Home() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <JsonLd data={homeSchema} />
 
-      {/* Hero */}
       <section className="hero hero-enter" aria-label="Welcome">
         <div className="hero-layout">
           <HeroSlideshow
@@ -61,8 +78,8 @@ export default function Home() {
             <span className="hero-kicker">Port Alberni, BC | Accepting new patients</span>
             <h1 className="display-xl">Modern family dentistry</h1>
             <p className="hero-lede">
-              Modern, compassionate dental care for every generation, explained clearly and
-              delivered at your pace.
+              Harbour View Dental is a family dentist in Port Alberni, BC. Dr. Gaurav (Gary) and the
+              team explain your care clearly and work at your pace.
             </p>
             <div className="hero-actions">
               <BtnLink href="/contact#booking">Book a visit</BtnLink>
@@ -79,7 +96,6 @@ export default function Home() {
         </ul>
       </section>
 
-      {/* 2 — Mission sky with glass panels (Titan) */}
       <section className="mission" aria-label="Our approach">
         <div className="mission-bg" aria-hidden="true">
           <Image src="/images/scene2.png" alt="" fill sizes="100vw" />
@@ -105,9 +121,9 @@ export default function Home() {
               <span className="glass-label">How we work</span>
               <ul className="value-list">
                 {features.map((feature, index) => (
-                  <li key={feature.title}>
+                  <li key={feature}>
                     <span className="value-num">{String(index + 1).padStart(2, "0")}</span>
-                    <p>{feature.title}</p>
+                    <p>{feature}</p>
                   </li>
                 ))}
               </ul>
@@ -125,7 +141,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3 — Stats statement (Joby) */}
       <section className="section stats" aria-label="Practice at a glance">
         <div className="container">
           <hr className="rule" />
@@ -147,7 +162,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4 — Editorial service index */}
       <section className="section home-services" id="services" aria-label="Services">
         <div className="container">
           <div className="home-services-head">
@@ -186,20 +200,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 — Team (Passionfroot circles) */}
       <section className="section" id="team" aria-label="Meet the team">
         <div className="container">
           <SectionHead
             eyebrow="The people"
             title="Meet the team"
-            lead="Eight friendly locals, led by Dr. Gaurav. People you'll get to know by name."
+            lead="Nine friendly locals, led by Dr. Gaurav. People you'll get to know by name."
             center
           />
           <TeamGrid dentistDisplayName="Dr. Gaurav (Gary)" />
         </div>
       </section>
 
-      {/* 7 — Reviews (Codecademy rating + notes) */}
       <section className="section" id="reviews" aria-label="Patient reviews">
         <div className="container">
           <SectionHead eyebrow="Reviews" title="In our patients' words" center />
@@ -207,7 +219,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8 — Booking + FAQ split over watercolor */}
       <BookingFaq items={homeFaqs} />
     </>
   );

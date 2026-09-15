@@ -6,8 +6,6 @@ import { BtnSubmit } from "./ui";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-/* Browserbase-style form card: uppercase labels, two-column rows,
-   thin-bordered inputs. States per REDESIGN.md §5.11. */
 export default function BookingForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");

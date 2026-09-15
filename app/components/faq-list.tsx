@@ -3,8 +3,6 @@ type FaqItem = {
   answer: string;
 };
 
-/* Retool-style hairline accordion. `name` makes the group exclusive
-   (single-open) in browsers that support it; others degrade gracefully. */
 export default function FaqList({ items, name = "faq" }: { items: FaqItem[]; name?: string }) {
   return (
     <div className="faq-list">

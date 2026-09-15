@@ -2,8 +2,6 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 
-/* Pill button with the circle-arrow affordance (Ada). One primary per section. */
-
 type BtnVariant = "primary" | "light";
 
 type BtnLinkProps = {

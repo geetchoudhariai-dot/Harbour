@@ -1,8 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import PageHero from "./components/page-hero";
 import { BtnLink } from "./components/ui";
 import { SITE } from "./lib/site";
+
+export const metadata: Metadata = {
+  title: "Page not found | Harbour View Dental",
+  description: "This page is not available. Return to Harbour View Dental in Port Alberni or book a visit.",
+  robots: {
+    index: false,
+    follow: true
+  }
+};
 
 export default function NotFound() {
   return (

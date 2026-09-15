@@ -1,22 +1,13 @@
 import {
   Activity,
   Aperture,
-  Baby,
   Box,
   Camera,
   Cpu,
-  HeartPulse,
-  Microscope,
-  Moon,
   Scan,
   ScanLine,
-  Scissors,
-  ShieldCheck,
-  Smile,
   Waves,
-  Wrench,
   Zap,
-  CalendarDays,
   type LucideIcon
 } from "lucide-react";
 
@@ -28,7 +19,6 @@ export const SITE = {
   emailHref: "mailto:info@harbourviewdental.com",
   street: "Unit B, 4556 Gertrude St",
   city: "Port Alberni, BC V9Y 6K1",
-  cityShort: "Port Alberni, BC",
   mapUrl:
     "https://www.google.com/maps/place/Harbourview+Dental/@49.2577946,-124.8136088,16z/data=!3m1!4b1!4m6!3m5!1s0x5488f702e3531a9f:0xd18a8ef79e2d8ad9!8m2!3d49.2577946!4d-124.8110339!16s%2Fg%2F11h75rypg5?entry=ttu",
   directionsUrl:
@@ -40,6 +30,11 @@ export const SITE = {
     "https://www.google.com/maps/place/Harbourview+Dental/@49.2577946,-124.8136088,16z/data=!3m1!4b1!4m6!3m5!1s0x5488f702e3531a9f:0xd18a8ef79e2d8ad9!8m2!3d49.2577946!4d-124.8110339!16s%2Fg%2F11h75rypg5?entry=ttu"
 };
 
+export const GEO = {
+  latitude: 49.2577946,
+  longitude: -124.8110339
+} as const;
+
 export const navLinks = [
   { label: "Services", href: "/services" },
   { label: "New Patients", href: "/new-patients" },
@@ -47,13 +42,6 @@ export const navLinks = [
   { label: "Technology", href: "/technology" },
   { label: "Contact", href: "/contact" }
 ];
-
-export const valueBadgeTones = [
-  "badge-buttercup",
-  "badge-blossom",
-  "badge-mint",
-  "badge-linen"
-] as const;
 
 export function serviceSlug(title: string) {
   return title.toLowerCase().replace(/[^a-z]+/g, "-");
@@ -80,16 +68,8 @@ export const values = [
   "Emergency care"
 ];
 
-export const welcomeBullets = [
-  "Same-day CEREC crowns, often in just one appointment.",
-  "Always accepting new patients and CDCP enrollees.",
-  "Gentle sedation options for nervous patients.",
-  "Regular hygiene visits to keep your mouth healthy.",
-  "Call or book online. We look forward to your visit."
-];
-
 export const stats = [
-  { value: "8", label: "Caring team members, led by Dr. Gaurav" },
+  { value: "9", label: "Caring team members, led by Dr. Gaurav" },
   { value: "1 visit", label: "Custom CEREC crowns, no second trip" },
   { value: "4.2", label: "Google rating from Port Alberni patients" },
   { value: "All ages", label: "Families, kids, adults, and seniors" }
@@ -116,10 +96,8 @@ export type DentalIconId =
 
 export type ServiceCategory = {
   title: string;
-  icon: LucideIcon;
   dentalIcon: DentalIconId;
   summary: string;
-  wide?: boolean;
   treatments: { name: string; note: string; slug: string }[];
 };
 
@@ -158,8 +136,6 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: "Preventive",
     dentalIcon: "preventive",
-    icon: ShieldCheck,
-    wide: true,
     summary:
       "Regular care that keeps your smile healthy and catches small problems before they become big, costly ones.",
     treatments: [
@@ -173,7 +149,6 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: "Children's Dentistry",
     dentalIcon: "children",
-    icon: Baby,
     summary:
       "Gentle, friendly care that helps kids build healthy habits and feel relaxed at the dentist. We recommend a first visit within six months of the first tooth or by age one.",
     treatments: [
@@ -185,8 +160,6 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: "Restorative",
     dentalIcon: "restorative",
-    icon: Wrench,
-    wide: true,
     summary:
       "Repair damaged teeth and replace missing ones so you can eat, speak, and smile comfortably again.",
     treatments: [
@@ -201,7 +174,6 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: "Periodontics",
     dentalIcon: "periodontics",
-    icon: Activity,
     summary: "Care for the gums and bone that support your teeth, the foundation of a healthy smile.",
     treatments: [
       { name: "Deep Cleaning", slug: "deep-cleaning", note: "Removes bacteria below the gumline to treat and prevent gum disease." }
@@ -210,7 +182,6 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: "Endodontics",
     dentalIcon: "endodontics",
-    icon: Microscope,
     summary: "Saving teeth from the inside out when decay or infection reaches the nerve.",
     treatments: [
       { name: "Root Canal Therapy", slug: "root-canal-therapy", note: "Relieves pain by removing infection inside a tooth so it can be saved." },
@@ -220,7 +191,6 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: "Oral Surgery",
     dentalIcon: "oral-surgery",
-    icon: Scissors,
     summary: "Safe, gentle procedures for the times a tooth simply needs to come out.",
     treatments: [
       {
@@ -233,7 +203,6 @@ export const serviceCategories: ServiceCategory[] = [
   {
     title: "Sedation Dentistry",
     dentalIcon: "sedation",
-    icon: Moon,
     summary:
       "Medication to help you relax for a better dental experience, closely monitored by Dr. Gary for your safety and comfort.",
     treatments: [
@@ -302,47 +271,20 @@ export const technology: Tech[] = [
 ];
 
 export const features = [
-  {
-    title: "Comfort-first care",
-    copy: "Clear explanations, gentle pacing, and no judgment, especially for patients who feel nervous or have been away for a while.",
-    icon: HeartPulse
-  },
-  {
-    title: "Modern tools, real benefits",
-    copy: "Digital imaging and same-day crown technology mean fewer appointments, better precision, and less time in the chair.",
-    icon: Activity
-  },
-  {
-    title: "Rooted in the Alberni Valley",
-    copy: "A local, independent practice with real people who live and work here, and who'll remember your name.",
-    icon: Waves
-  },
-  {
-    title: "New patients welcome",
-    copy: "From your first call to your first visit, we walk you through timing, coverage, forms, and next steps.",
-    icon: CalendarDays
-  }
+  "Comfort-first care",
+  "Modern tools, real benefits",
+  "Rooted in the Alberni Valley",
+  "New patients welcome"
 ];
 
-export const comfort = [
-  {
-    title: "Sedation dentistry",
-    copy: "Oral conscious sedation helps you stay relaxed. It is ideal for anxiety, multiple procedures, or longer appointments that feel shorter.",
-    icon: Moon
-  },
-  {
-    title: "Gentle & judgment-free",
-    copy: "We listen first, explain everything, and go at a pace that feels right for you.",
-    icon: HeartPulse
-  },
-  {
-    title: "Personalized plans",
-    copy: "Treatment built around your needs, timeline, and budget, never one-size-fits-all.",
-    icon: Smile
-  }
-];
+export type TeamMember = {
+  name: string;
+  role: string;
+  image?: string;
+  lead?: boolean;
+};
 
-export const team = [
+export const team: TeamMember[] = [
   { name: "Dr. Gary", role: "Owner & General Dentist", image: "/images/dr-gaurav.jpg", lead: true },
   { name: "Carly Dalziel", role: "Registered Dental Hygienist", image: "/images/carly-dalziel.jpg" },
   { name: "Tatiana Tordoya", role: "Treatment Coordinator", image: "/images/tatiana-tordoya.jpg" },
@@ -350,37 +292,16 @@ export const team = [
   { name: "Kathy Porcher", role: "Hygiene Coordinator", image: "/images/kathy-porcher.jpg" },
   { name: "Pankti Desai", role: "Certified Dental Assistant", image: "/images/pankti-desai.jpg" },
   { name: "Gloria Martens", role: "Certified Dental Assistant", image: "/images/gloria-martens.jpg" },
-  { name: "Sakshi Ganguli", role: "Certified Dental Assistant", image: "/images/sakshi-ganguli.jpg" }
+  { name: "Sakshi Ganguli", role: "Certified Dental Assistant", image: "/images/sakshi-ganguli.jpg" },
+  { name: "Joan Erickson", role: "Dental Receptionist" }
 ];
 
-export type CareScene = {
-  src: string;
-  alt: string;
-  caption: string;
-};
-
 export const careScenes = {
-  consultation: {
-    src: "/images/care-consultation.jpg",
-    alt: "Dr. Gary discussing treatment options with a patient at Harbour View Dental",
-    caption: "Every visit starts with a conversation"
-  },
-  assistant: {
-    src: "/images/scene3.png",
-    alt: "Pankti, certified dental assistant at Harbour View Dental, supporting a patient during a visit",
-    caption: "Chairside support from Pankti"
-  },
-  family: {
-    src: "/images/scene4.png",
-    alt: "Comfortable children's dentistry at Harbour View Dental in Port Alberni",
-    caption: "Calm care for kids and families"
-  },
   digital: {
     src: "/images/care-digital.jpg",
-    alt: "Digital intraoral scanning for comfortable, precise dental care",
-    caption: "Modern tools, right here in clinic"
+    alt: "Digital intraoral scanning for comfortable, precise dental care"
   }
-} satisfies Record<string, CareScene>;
+};
 
 export const visitFlow = [
   {
@@ -404,6 +325,7 @@ export const visitFlow = [
 export const firstVisit = [
   "Comprehensive oral examination",
   "Full-mouth digital X-rays",
+  "Oral cancer screening",
   "Oral hygiene instruction",
   "Professional teeth cleaning",
   "One-on-one consultation with Dr. Gary"

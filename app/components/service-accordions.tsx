@@ -7,9 +7,6 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { serviceImages, serviceSlug, serviceTagline, type DentalIconId } from "../lib/site";
 import { treatmentHref } from "../lib/treatments";
 
-/* Only plain-serializable fields — the full ServiceCategory type carries a
-   LucideIcon component reference, which can't cross the server/client
-   boundary as a prop. */
 export type ServiceAccordionCategory = {
   title: string;
   dentalIcon: DentalIconId;

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import PageHero from "../components/page-hero";
 import { LinkArrow } from "../components/ui";
+import JsonLd from "../components/json-ld";
 import { SITE } from "../lib/site";
+import { breadcrumbList, webPage } from "../lib/schema";
 import { pageMetadata } from "../lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -11,9 +13,24 @@ export const metadata: Metadata = pageMetadata({
   path: "/accessibility"
 });
 
+const accessibilitySchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "Accessibility", path: "/accessibility" }
+    ]),
+    webPage({
+      path: "/accessibility",
+      name: "Website accessibility"
+    })
+  ]
+};
+
 export default function AccessibilityPage() {
   return (
     <>
+      <JsonLd data={accessibilitySchema} />
       <PageHero
         eyebrow="Accessibility"
         title="Website accessibility"

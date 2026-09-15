@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import PageHero from "../components/page-hero";
 import SectionHead from "../components/section-head";
 import ServiceAccordions from "../components/service-accordions";
+import JsonLd from "../components/json-ld";
 import { serviceCategories } from "../lib/site";
-import { pageMetadata } from "../lib/seo";
+import { breadcrumbList, webPage } from "../lib/schema";
+import { pageMetadata, SITE_URL } from "../lib/seo";
+import { treatments } from "../lib/treatments";
 
 export const metadata: Metadata = pageMetadata({
   title: "Dental Services | Harbour View Dental, Port Alberni",
@@ -18,9 +21,40 @@ export const metadata: Metadata = pageMetadata({
   ]
 });
 
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "Services", path: "/services" }
+    ]),
+    {
+      ...webPage({
+        path: "/services",
+        name: "Dental Services in Port Alberni",
+        description:
+          "Preventive, children's, restorative, periodontic, endodontic, oral surgery, and sedation dentistry at Harbour View Dental in Port Alberni, BC.",
+        type: "CollectionPage"
+      }),
+      mainEntity: {
+        "@type": "ItemList",
+        name: "Dental treatments",
+        numberOfItems: treatments.length,
+        itemListElement: treatments.map((treatment, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: treatment.title,
+          url: `${SITE_URL}/services/${treatment.slug}`
+        }))
+      }
+    }
+  ]
+};
+
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd data={servicesSchema} />
       <PageHero
         eyebrow="Our services"
         title="Comprehensive dental care in Port Alberni"

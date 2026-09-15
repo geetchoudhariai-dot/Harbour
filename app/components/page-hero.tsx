@@ -17,8 +17,6 @@ type PageHeroProps = {
   className?: string;
 };
 
-/* Inner-page hero: sage panel, eyebrow + display headline + lede,
-   optional framed image right. */
 export default function PageHero({ title, lead, eyebrow, image, actions, className }: PageHeroProps) {
   return (
     <section className={`page-hero${className ? ` ${className}` : ""}`}>

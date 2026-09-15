@@ -4,7 +4,9 @@ import BookingForm from "../components/booking-form";
 import MapEmbed from "../components/map-embed";
 import PageHero from "../components/page-hero";
 import SectionHead from "../components/section-head";
+import JsonLd from "../components/json-ld";
 import { SITE, hours } from "../lib/site";
+import { breadcrumbList, dentistRef, webPage } from "../lib/schema";
 import { pageMetadata } from "../lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -20,9 +22,30 @@ export const metadata: Metadata = pageMetadata({
   ]
 });
 
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "Contact", path: "/contact" }
+    ]),
+    {
+      ...webPage({
+        path: "/contact",
+        name: "Contact Harbour View Dental",
+        description:
+          "Call (250) 724-1314 or request an appointment online at Harbour View Dental, Unit B, 4556 Gertrude St, Port Alberni, BC.",
+        type: "ContactPage"
+      }),
+      mainEntity: dentistRef()
+    }
+  ]
+};
+
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={contactSchema} />
       <PageHero
         eyebrow="Contact us"
         title="Book your visit"
@@ -48,9 +71,11 @@ export default function ContactPage() {
               </span>
               <div>
                 <strong>Our location</strong>
-                <a href={SITE.mapUrl} target="_blank" rel="noopener noreferrer">
-                  {SITE.street}, {SITE.city}
-                </a>
+                <address>
+                  <a href={SITE.mapUrl} target="_blank" rel="noopener noreferrer">
+                    {SITE.street}, {SITE.city}
+                  </a>
+                </address>
               </div>
             </div>
             <div className="info-row">
@@ -58,7 +83,7 @@ export default function ContactPage() {
                 <Phone size={18} aria-hidden="true" />
               </span>
               <div>
-                <strong>Call or text</strong>
+                <strong>Call us</strong>
                 <a href={SITE.phoneHref}>{SITE.phone}</a>
               </div>
             </div>

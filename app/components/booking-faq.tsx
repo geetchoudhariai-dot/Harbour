@@ -4,9 +4,6 @@ import FaqList from "./faq-list";
 import SectionHead from "./section-head";
 import { SITE, faqs } from "../lib/site";
 
-/* Booking + FAQ split (Browserbase form + Retool accordion) over the
-   watercolor rising from the bottom of the section (REDESIGN.md D9/D6). */
-
 type BookingFaqProps = {
   faqCount?: number;
   items?: typeof faqs;

@@ -4,7 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHero from "../../components/page-hero";
 import { BtnLink } from "../../components/ui";
+import JsonLd from "../../components/json-ld";
 import { SITE } from "../../lib/site";
+import { breadcrumbList, dentistRef } from "../../lib/schema";
 import { pageMetadata, SITE_URL } from "../../lib/seo";
 import {
   getAllTreatmentSlugs,
@@ -24,7 +26,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const treatment = getTreatment(slug);
-  if (!treatment) return { title: "Service not found" };
+  if (!treatment) {
+    return {
+      title: "Service not found | Harbour View Dental",
+      robots: { index: false, follow: true }
+    };
+  }
 
   return pageMetadata({
     title: `${treatment.title} | Harbour View Dental, Port Alberni`,
@@ -48,33 +55,36 @@ export default async function TreatmentPage({ params }: Props) {
     (t) => t.slug !== treatment.slug
   );
 
-  const breadcrumbSchema = {
+  const pageSchema = {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` },
+    "@graph": [
+      breadcrumbList([
+        { name: "Home", path: "/" },
+        { name: "Services", path: "/services" },
+        { name: treatment.category, path: `/services#${treatment.categorySlug}` },
+        { name: treatment.title, path: `/services/${treatment.slug}` }
+      ]),
       {
-        "@type": "ListItem",
-        position: 3,
-        name: treatment.category,
-        item: `${SITE_URL}/services#${treatment.categorySlug}`
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
+        "@type": "Service",
+        "@id": `${SITE_URL}/services/${treatment.slug}#service`,
         name: treatment.title,
-        item: `${SITE_URL}/services/${treatment.slug}`
+        serviceType: treatment.title,
+        category: treatment.category,
+        description: treatment.intro,
+        url: `${SITE_URL}/services/${treatment.slug}`,
+        mainEntityOfPage: `${SITE_URL}/services/${treatment.slug}`,
+        provider: dentistRef(),
+        areaServed: {
+          "@type": "City",
+          name: "Port Alberni"
+        }
       }
     ]
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <JsonLd data={pageSchema} />
       <PageHero
         eyebrow={treatment.category}
         title={treatment.title}

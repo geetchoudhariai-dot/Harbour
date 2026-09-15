@@ -4,8 +4,10 @@ import PageHero from "../components/page-hero";
 import FaqList from "../components/faq-list";
 import ProcessSteps from "../components/process-steps";
 import SectionHead from "../components/section-head";
+import JsonLd from "../components/json-ld";
 import { BtnLink } from "../components/ui";
 import { bring, faqs, firstVisit, visitFlow } from "../lib/site";
+import { breadcrumbList, faqEntities, webPage } from "../lib/schema";
 import { pageMetadata } from "../lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -25,20 +27,30 @@ const newPatientFaqs = faqs
   .filter((f) => /insurance|CDCP|first visit|new patients/i.test(f.question + f.answer))
   .slice(0, 5);
 
-const faqSchema = {
+const newPatientsSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: newPatientFaqs.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: { "@type": "Answer", text: item.answer }
-  }))
+  "@graph": [
+    breadcrumbList([
+      { name: "Home", path: "/" },
+      { name: "New Patients", path: "/new-patients" }
+    ]),
+    webPage({
+      path: "/new-patients",
+      name: "New Patients at Harbour View Dental",
+      description:
+        "Harbour View Dental welcomes new patients of all ages in Port Alberni, including CDCP patients. Learn what the first visit includes and what to bring."
+    }),
+    {
+      "@type": "FAQPage",
+      mainEntity: faqEntities(newPatientFaqs)
+    }
+  ]
 };
 
 export default function NewPatientsPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <JsonLd data={newPatientsSchema} />
       <PageHero
         eyebrow="New patients"
         title="Welcome to the practice"
@@ -107,7 +119,11 @@ export default function NewPatientsPage() {
         </div>
       </section>
 
-      <section className="section insurance-faq-section" aria-label="Insurance and common questions">
+      <section
+        className="section insurance-faq-section"
+        id="insurance-faq-section"
+        aria-label="Insurance and common questions"
+      >
         <div className="container insurance-faq-grid">
           <div className="insurance-faq-copy fade-up">
             <SectionHead

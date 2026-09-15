@@ -49,13 +49,15 @@ export default function Footer() {
 
         <div className="footer-col">
           <h4>Visit</h4>
-          <a href={SITE.mapUrl} target="_blank" rel="noopener noreferrer">
-            {SITE.street}
-            <br />
-            {SITE.city}
-          </a>
-          <a href={SITE.phoneHref}>{SITE.phone}</a>
-          <a href={SITE.emailHref}>{SITE.email}</a>
+          <address>
+            <a href={SITE.mapUrl} target="_blank" rel="noopener noreferrer">
+              {SITE.street}
+              <br />
+              {SITE.city}
+            </a>
+            <a href={SITE.phoneHref}>{SITE.phone}</a>
+            <a href={SITE.emailHref}>{SITE.email}</a>
+          </address>
         </div>
 
         <div className="footer-col">

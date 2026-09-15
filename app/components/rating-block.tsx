@@ -1,10 +1,6 @@
 import { Star, StarHalf } from "lucide-react";
 import { SITE, testimonials } from "../lib/site";
 
-/* Codecademy-style rating header + paper-note review cards.
-   Rating 4.2 is authoritative per the practice owner; quotes are
-   real, verbatim Google reviews. No fabricated histogram. */
-
 function Stars() {
   return (
     <span className="stars" aria-hidden="true">

@@ -1,11 +1,6 @@
 @import "tailwindcss";
 
-/* ============================================================
-   Harbour View Dental — "Watercolor Coast"
-   Token sheet + component styles per REDESIGN.md
-   Base system: Zoox extraction (paper/sage/ink/mint, pill geometry,
-   hairline rules, single nav shadow) + watercolor environment.
-   ============================================================ */
+/* Harbour View Dental */
 
 :root {
   /* Surfaces */
@@ -27,20 +22,14 @@
   --line: rgba(52, 116, 180, 0.2);
   --line-strong: rgba(52, 116, 180, 0.4);
 
-  /* Illustration accents — cards & pigment only, never controls */
-  --evergreen: #35597c;
   --terracotta: #b5472e;
   --gold: #dcc188;
   --sky: #cadeed;
-
-  /* Icon wash tints (dental icon blobs) */
-  --wash-blue: #cadeed;
-  --wash-mint: #d8edf7;
   --wash-sand: #e6f1f8;
-  --wash-coral: #c9e4f3;
 
   /* Type */
   --font-body: var(--font-hanken), system-ui, helvetica, arial, sans-serif;
+  --font-hand: var(--font-caveat), "Segoe Script", "Bradley Hand", cursive;
 
   /* Radius roles */
   --r-sm: 8px;
@@ -934,7 +923,7 @@ h1, h2, h3, h4 {
   color: var(--ink-60);
 }
 
-/* ---------- Mission sky (Titan) ---------- */
+/* ---------- Mission ---------- */
 
 .mission {
   position: relative;
@@ -1081,7 +1070,7 @@ h1, h2, h3, h4 {
   color: var(--ink-60);
 }
 
-/* ---------- Stats (Joby) ---------- */
+/* ---------- Stats ---------- */
 
 .stats-grid {
   display: grid;
@@ -1125,7 +1114,7 @@ h1, h2, h3, h4 {
   white-space: nowrap;
 }
 
-/* ---------- Services (image cards) ---------- */
+/* ---------- Services ---------- */
 
 .home-services {
   background: transparent;
@@ -1183,8 +1172,6 @@ h1, h2, h3, h4 {
   height: 96px;
   overflow: hidden;
   border-radius: var(--r-sm);
-  /* Transparent icons sit directly on the page background — one constant,
-     seamless surface, no tint and no visible box. */
   background: var(--paper);
 }
 
@@ -1242,122 +1229,7 @@ h1, h2, h3, h4 {
   transform: translate(2px, -2px);
 }
 
-.svc-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.svc-card {
-  position: relative;
-  display: grid;
-  grid-template-rows: 190px 1fr;
-  overflow: hidden;
-  border-radius: var(--r-lg);
-  min-height: 340px;
-  color: var(--ink);
-  background: var(--white);
-  border: 1px solid var(--line);
-  box-shadow: 0 1px 2px rgba(13, 18, 18, 0.06), 0 8px 24px rgba(13, 18, 18, 0.08);
-  transition:
-    transform 0.35s var(--ease-out),
-    box-shadow 0.35s var(--ease-out);
-}
-
-.svc-card:hover,
-.svc-card:focus-visible {
-  transform: translateY(-6px);
-  box-shadow: 0 4px 8px rgba(13, 18, 18, 0.08), 0 18px 40px rgba(13, 18, 18, 0.16);
-}
-
-.svc-card-media {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.96), rgba(220, 236, 246, 0.72) 62%, rgba(202, 225, 240, 0.84));
-}
-
-.svc-card-media svg {
-  position: relative;
-  z-index: 1;
-  width: 116px;
-  height: 116px;
-  filter: drop-shadow(0 12px 20px rgba(43, 91, 153, 0.12));
-  transition: transform 0.6s var(--ease-out);
-}
-
-.svc-card:hover .svc-card-media svg,
-.svc-card:focus-visible .svc-card-media svg {
-  transform: translateY(-3px) scale(1.03);
-}
-
-.svc-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), transparent 58%);
-}
-
-.svc-card-body {
-  padding: 22px 54px 24px 22px;
-}
-
-.svc-card-body h3 {
-  font-size: 21px;
-  font-weight: 550;
-  letter-spacing: 0;
-  margin-bottom: 8px;
-  transition: font-weight 0.25s var(--ease-out);
-}
-
-.svc-card-body p {
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 400;
-  color: var(--ink-60);
-  transition: font-weight 0.25s var(--ease-out), color 0.25s var(--ease-out);
-}
-
-.svc-card:hover .svc-card-body h3,
-.svc-card:focus-visible .svc-card-body h3,
-.svc-card:hover .svc-card-body p,
-.svc-card:focus-visible .svc-card-body p {
-  font-weight: 700;
-}
-
-.svc-card:hover .svc-card-body p,
-.svc-card:focus-visible .svc-card-body p {
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.svc-card-arrow {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  z-index: 1;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ink);
-  color: #fff;
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
-}
-
-.svc-card:hover .svc-card-arrow,
-.svc-card:focus-visible .svc-card-arrow {
-  opacity: 1;
-  transform: translate(2px, -2px);
-}
-
-/* ---------- Content triptych (Zoox) ---------- */
+/* ---------- Content triptych ---------- */
 
 .trip {
   position: relative;
@@ -1368,73 +1240,6 @@ h1, h2, h3, h4 {
 .trip-content {
   position: relative;
   z-index: 1;
-}
-
-.trip-background {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-}
-
-.trip-background img {
-  object-fit: cover;
-  object-position: center 42%;
-}
-
-.trip--cards::after {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(180deg, rgba(12, 35, 41, 0.5), rgba(12, 35, 41, 0.7));
-  content: "";
-}
-
-.trip--cards .section-head {
-  color: #fff;
-}
-
-.trip--cards .section-head .eyebrow {
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.trip--cards .trip-item {
-  align-items: flex-start;
-  min-height: 250px;
-  padding: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.44);
-  border-radius: var(--r-lg);
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  text-align: left;
-}
-
-.trip--cards .trip-item p {
-  flex: 1;
-  max-width: none;
-}
-
-.trip-grid--cards {
-  gap: 16px;
-}
-
-.trip-glass-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 12px;
-  min-height: 100%;
-}
-
-.trip-glass-card p {
-  font-size: 14.5px;
-  line-height: 1.55;
-  color: var(--ink-60);
-  flex: 1;
-}
-
-.trip-glass-card .glass-label {
-  margin-bottom: 0;
 }
 
 .trip-grid {
@@ -1481,7 +1286,7 @@ h1, h2, h3, h4 {
   max-width: 36ch;
 }
 
-/* ---------- Team (Passionfroot) ---------- */
+/* ---------- Team ---------- */
 
 .team-grid {
   display: grid;
@@ -1517,6 +1322,15 @@ h1, h2, h3, h4 {
   object-fit: cover;
 }
 
+.team-photo-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--harbour);
+}
+
 .team-tag {
   font-size: 12px;
   font-weight: 600;
@@ -1533,7 +1347,7 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-/* ---------- Reviews (Codecademy) ---------- */
+/* ---------- Reviews ---------- */
 
 .rating-row {
   display: flex;
@@ -1616,7 +1430,7 @@ h1, h2, h3, h4 {
   font-weight: 650;
 }
 
-/* ---------- Booking + FAQ split (Browserbase + Retool) ---------- */
+/* ---------- Booking + FAQ ---------- */
 
 .book {
   position: relative;
@@ -1862,7 +1676,7 @@ textarea.field {
   justify-content: center;
 }
 
-/* ---------- Footer (Duna painted landscape) ---------- */
+/* ---------- Footer ---------- */
 
 .footer {
   position: relative;
@@ -2181,27 +1995,132 @@ textarea.field {
   color: rgba(255, 255, 255, 0.94);
 }
 
-.about-doctor {
-  padding-top: clamp(36px, 5vw, 64px);
+.doctor-section {
+  padding-block: clamp(48px, 6vw, 88px);
 }
 
-.about-doctor-grid {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+/* Composes .glass; only the deltas for this larger section card live here. */
+.doctor-note {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(255, 255, 255, 0.85);
+  padding: clamp(32px, 4vw, 56px) clamp(24px, 6vw, 64px);
+  box-shadow: 0 20px 60px rgba(43, 91, 153, 0.1);
+}
+
+.doctor-note-inner {
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.doctor-note-top {
+  display: flex;
   align-items: center;
-  gap: clamp(48px, 7vw, 104px);
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.about-doctor .statement {
-  max-width: 18ch;
-  margin-top: 0;
+.doctor-note-top .doctor-note-cta {
+  min-height: 40px;
+  padding: 6px 6px 6px 20px;
+  font-size: 13.5px;
 }
 
-.about-doctor .prose {
+.doctor-letter-opening {
+  max-width: 26ch;
+  margin-top: 18px;
+  font-size: clamp(32px, 3.4vw, 48px);
+  font-weight: 520;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.doctor-letter-copy {
   max-width: 62ch;
+  margin-top: clamp(24px, 3vw, 36px);
 }
 
-.about-doctor .doctor-media {
-  aspect-ratio: 4 / 3;
+.doctor-letter-copy p {
+  font-size: clamp(16.5px, 1.2vw, 18px);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.doctor-letter-copy p + p {
+  margin-top: 20px;
+}
+
+@media (min-width: 900px) {
+  .doctor-letter-copy {
+    max-width: none;
+    column-count: 2;
+    column-gap: clamp(40px, 5vw, 64px);
+  }
+
+  .doctor-letter-copy p {
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
+}
+
+.doctor-note-sign {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: clamp(32px, 4vw, 44px);
+  padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--line);
+}
+
+.doctor-note-sign .sign-hand {
+  display: block;
+  font-family: var(--font-hand);
+  font-size: clamp(32px, 2.8vw, 40px);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--teal-deep);
+  transform: rotate(-2deg);
+  transform-origin: left bottom;
+  width: max-content;
+}
+
+.sign-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sign-avatar {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.sign-avatar img {
+  object-fit: cover;
+}
+
+.doctor-note-sign .sign-name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14.5px;
+  line-height: 1.4;
+}
+
+.doctor-note-sign .sign-name strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.doctor-note-sign .sign-name span {
+  color: var(--ink-60);
 }
 
 .trip--plain {
@@ -2212,17 +2131,6 @@ textarea.field {
 
 .trip--plain .trip-media {
   border-radius: var(--r-sm);
-}
-
-.doctor-media {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  border-radius: var(--r-xl);
-}
-
-.doctor-media img {
-  object-fit: cover;
 }
 
 .page-hero-inner:not(.no-media) .btn-secondary {
@@ -2292,7 +2200,7 @@ textarea.field {
   background: var(--sage);
 }
 
-/* Process steps (Joby ruled rows) */
+/* Process steps */
 .process {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -2660,119 +2568,7 @@ textarea.field {
   color: var(--harbour);
 }
 
-/* Tech / feature tiles */
-.tile-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.tile {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  padding: 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.tile-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--sage);
-  color: var(--teal-deep);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 4px;
-}
-
-.tile h3 {
-  font-size: 17.5px;
-  font-weight: 650;
-}
-
-.tile p {
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ink-60);
-}
-
 /* ---------- Technology page ---------- */
-
-.tech-intro {
-  background: transparent;
-  padding-block: clamp(56px, 7vw, 92px);
-}
-
-.tech-intro-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(360px, 4fr);
-  gap: clamp(40px, 8vw, 120px);
-  align-items: end;
-  border-top: 1px solid var(--line-strong);
-  border-bottom: 1px solid var(--line-strong);
-  padding-block: clamp(42px, 6vw, 76px);
-}
-
-.tech-intro-head {
-  max-width: 760px;
-}
-
-.tech-intro-head .display-m {
-  max-width: 16ch;
-  margin-top: 18px;
-  font-weight: 560;
-}
-
-.tech-intro-copy {
-  display: grid;
-  gap: 28px;
-}
-
-.tech-intro-copy > p {
-  max-width: 56ch;
-  color: var(--ink-60);
-}
-
-.tech-promise-list {
-  display: grid;
-  gap: 10px;
-}
-
-.tech-promise {
-  display: grid;
-  grid-template-columns: 42px minmax(0, 1fr);
-  gap: 18px;
-  align-items: start;
-  padding: 18px 0;
-  border-top: 1px solid var(--line);
-}
-
-.tech-promise:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-.tech-promise > span {
-  color: var(--teal-deep);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.tech-promise h3 {
-  font-size: 18px;
-  font-weight: 650;
-  line-height: 1.2;
-}
-
-.tech-promise p {
-  margin-top: 6px;
-  color: var(--ink-60);
-  font-size: 14px;
-  line-height: 1.5;
-}
 
 .tech-cerec {
   padding-top: clamp(40px, 5vw, 68px);
@@ -2831,13 +2627,13 @@ textarea.field {
   font-weight: 700;
 }
 
-.tech-process-step h3 {
+.tech-process-step .tech-process-title {
   margin-top: 58px;
   font-size: clamp(21px, 2vw, 28px);
   font-weight: 600;
 }
 
-.tech-process-step p {
+.tech-process-step p:not(.tech-process-title) {
   margin-top: 12px;
   color: var(--ink-60);
   font-size: 14px;
@@ -3026,6 +2822,10 @@ textarea.field {
   text-transform: uppercase;
   color: var(--teal-deep);
   margin-bottom: 4px;
+}
+
+.info-row address {
+  font-style: normal;
 }
 
 .info-row a {
@@ -3248,11 +3048,6 @@ html.anim .hero-enter.is-in {
     align-items: start;
   }
 
-
-  .svc-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .team-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -3275,25 +3070,12 @@ html.anim .hero-enter.is-in {
     grid-template-columns: 1fr;
   }
 
-  .svc-detail {
-    grid-template-columns: 1fr;
-  }
-
-  .trip-grid,
-  .tile-grid {
+  .trip-grid {
     grid-template-columns: 1fr 1fr;
   }
 
   .process {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .tech-intro-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .tech-intro-grid > .eyebrow {
-    grid-column: 1 / -1;
   }
 
   .tech-feature-head,
@@ -3334,6 +3116,19 @@ html.anim .hero-enter.is-in {
 @media (max-width: 767px) {
   body {
     font-size: 16px;
+  }
+
+  .doctor-note {
+    padding: 28px 22px;
+  }
+
+  .doctor-note-top {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .doctor-letter-opening {
+    font-size: 26px;
   }
 
   .nav-pill {
@@ -3468,10 +3263,6 @@ html.anim .hero-enter.is-in {
     min-height: min(58dvh, 500px);
   }
 
-  .about-doctor .doctor-media {
-    aspect-ratio: 4 / 3;
-  }
-
   .insurance-faq-grid {
     grid-template-columns: 1fr;
   }
@@ -3528,33 +3319,11 @@ html.anim .hero-enter.is-in {
     padding-top: 14px;
   }
 
-  .svc-grid {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 8px;
-    margin-inline: calc(var(--gutter) * -1);
-    padding-inline: var(--gutter);
-    scrollbar-width: none;
-  }
-
-  .svc-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .svc-card {
-    flex: 0 0 82%;
-    scroll-snap-align: center;
-    min-height: 300px;
-  }
-
   .stat-cells {
     gap: 22px 20px;
   }
 
   .trip-grid,
-  .tile-grid,
   .notes,
   .treatment-grid,
   .form-row {
@@ -3574,14 +3343,9 @@ html.anim .hero-enter.is-in {
     gap: 22px;
   }
 
-  .tech-intro-grid,
   .tech-process,
   .tech-close-inner {
     grid-template-columns: 1fr;
-  }
-
-  .tech-intro-grid > .eyebrow {
-    grid-column: auto;
   }
 
   .tech-process-step,
@@ -3595,7 +3359,7 @@ html.anim .hero-enter.is-in {
     border-bottom: 0;
   }
 
-  .tech-process-step h3 {
+  .tech-process-step .tech-process-title {
     margin-top: 28px;
   }
 

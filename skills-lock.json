@@ -13,6 +13,12 @@
       "skillPath": "skills/taste-skill/SKILL.md",
       "computedHash": "6d838b246d0e35d0b53f4f23f98ba7a1dd561937e64f7d0c7553b0928e376c3e"
     },
+    "diagram-design": {
+      "source": "cathrynlavery/diagram-design",
+      "sourceType": "github",
+      "skillPath": "skills/diagram-design/SKILL.md",
+      "computedHash": "5506bb95b187ea8aaf6823388d7027885ee5c56f90af674d775c8f015ef560f2"
+    },
     "frontend-design": {
       "source": "anthropics/skills",
       "sourceType": "github",

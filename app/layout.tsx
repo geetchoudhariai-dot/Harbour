@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk } from "next/font/google";
+import { Caveat, Hanken_Grotesk } from "next/font/google";
 import Nav from "./components/nav";
 import Footer from "./components/footer";
 import SiteEffects from "./components/site-effects";
 import StructuredData from "./components/structured-data";
-import { DEFAULT_KEYWORDS, SITE_URL } from "./lib/seo";
+import {
+  DEFAULT_DESCRIPTION,
+  DEFAULT_KEYWORDS,
+  DEFAULT_OG_IMAGE,
+  DEFAULT_TITLE,
+  SITE_URL,
+  geoMeta
+} from "./lib/seo";
 import "./globals.css";
 
 const hanken = Hanken_Grotesk({
@@ -13,56 +20,52 @@ const hanken = Hanken_Grotesk({
   variable: "--font-hanken"
 });
 
+/* Handwritten accent — used only for signatures and painting captions. */
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  display: "swap",
+  variable: "--font-caveat"
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Harbour View Dental | Dentist in Port Alberni, BC",
+    default: DEFAULT_TITLE,
     template: "%s"
   },
-  description:
-    "Smile better, feel better. Comprehensive, compassionate dental care in Port Alberni, BC for new patients, families, CDCP, emergencies, and same-day crowns with Dr. Gary.",
+  description: DEFAULT_DESCRIPTION,
+  applicationName: "Harbour View Dental",
   keywords: DEFAULT_KEYWORDS,
-  authors: [{ name: "Harbour View Dental" }],
+  authors: [{ name: "Harbour View Dental" }, { name: "Dr. Gaurav", url: `${SITE_URL}/about#doctor` }],
   creator: "Harbour View Dental",
   publisher: "Harbour View Dental",
+  category: "health",
   formatDetection: {
     telephone: true,
-    email: false,
-    address: false
-  },
-  alternates: {
-    canonical: SITE_URL
+    email: true,
+    address: true
   },
   icons: {
     icon: "/images/logo-mark.png",
     apple: "/images/logo-mark.png"
   },
   openGraph: {
-    title: "Harbour View Dental | Dentist in Port Alberni, BC",
-    description:
-      "Smile better, feel better. A warm, modern dental home on the harbour in Port Alberni for new patients, families, CDCP, emergencies, and same-day crowns.",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     url: SITE_URL,
     siteName: "Harbour View Dental",
     type: "website",
     locale: "en_CA",
-    images: [
-      {
-        url: "/images/scene1.png",
-        alt: "Port Alberni harbour watercolor"
-      }
-    ]
+    images: [DEFAULT_OG_IMAGE]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Harbour View Dental | Dentist in Port Alberni, BC",
-    description:
-      "Comprehensive dental care in Port Alberni, BC for new patients, CDCP, emergencies, and same-day crowns."
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url]
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true }
-  }
+  other: geoMeta
 };
 
 export default function RootLayout({
@@ -71,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-CA" className={hanken.variable}>
+    <html lang="en-CA" className={`${hanken.variable} ${caveat.variable}`}>
       <body>
         <StructuredData />
         <SiteEffects />
