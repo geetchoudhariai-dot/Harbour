@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { SITE } from "../lib/site";
 import { BtnSubmit } from "./ui";
@@ -194,7 +195,9 @@ export default function BookingForm() {
       ) : null}
 
       <p className="form-microcopy">
-        We reply within one business day. By sending, you agree to be contacted about your request.
+        We reply within one business day. By sending, you agree to be contacted about your
+        request. Please don&apos;t include detailed medical history here — see our{" "}
+        <Link href="/privacy">privacy policy</Link>.
       </p>
 
       <BtnSubmit disabled={status === "loading"}>

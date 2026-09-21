@@ -9,6 +9,19 @@ const categoryRedirects = [
   ["oral-surgery-services", "oral-surgery"]
 ] as const;
 
+/** Old pages with no equivalent on the new site — sent to the closest real page
+    instead of 404ing. Dental bonding and composite fillings are the same
+    procedure; the flossing and enamel posts map to hygiene and preventive. */
+const orphanRedirects = [
+  ["/services/bonding", "/services/composite-fillings"],
+  ["/services/oral-cancer-screening", "/services"],
+  ["/only-floss-the-teeth-you-want-to-keep", "/services/dental-hygiene"],
+  ["/give-yourself-the-giftof-stronger-teeth", "/services#preventive"],
+  ["/oral-cancer-screening-can-save-your-life", "/services"],
+  ["/category/uncategorized", "/"],
+  ["/author/developer", "/"]
+] as const;
+
 const aliasRedirects = [
   ["cosmetic-services", "/services"],
   ["porcelain-dental-veneers", "/services"],
@@ -54,6 +67,10 @@ const nextConfig: NextConfig = {
       ...aliasRedirects.flatMap(([slug, dest]) => [
         { source: `/services/${slug}`, destination: dest, permanent: true },
         { source: `/services/${slug}/`, destination: dest, permanent: true }
+      ]),
+      ...orphanRedirects.flatMap(([source, destination]) => [
+        { source, destination, permanent: true },
+        { source: `${source}/`, destination, permanent: true }
       ])
     ];
   }

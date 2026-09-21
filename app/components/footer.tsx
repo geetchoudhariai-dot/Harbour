@@ -85,8 +85,9 @@ export default function Footer() {
       <div className="footer-legal">
         <div>
           <p>
-            © 2026 Harbour View Dental · Port Alberni, BC ·{" "}
-            <Link href="/accessibility">Accessibility</Link>
+            © {new Date().getFullYear()} Harbour View Dental · Port Alberni, BC ·{" "}
+            <Link href="/accessibility">Accessibility</Link> ·{" "}
+            <Link href="/privacy">Privacy</Link>
           </p>
           <p>Located on the unceded territory of the Tseshaht and Hupacasath First Nations.</p>
         </div>

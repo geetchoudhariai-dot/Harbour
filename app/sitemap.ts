@@ -16,6 +16,7 @@ const staticRoutes: {
   { path: "/new-patients", priority: 0.85, changeFrequency: "monthly" },
   { path: "/technology", priority: 0.75, changeFrequency: "monthly" },
   { path: "/accessibility", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/llms.txt", priority: 0.2, changeFrequency: "monthly" },
   { path: "/llms-full.txt", priority: 0.2, changeFrequency: "monthly" }
 ];

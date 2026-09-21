@@ -152,9 +152,7 @@ export const serviceCategories: ServiceCategory[] = [
     summary:
       "Gentle, friendly care that helps kids build healthy habits and feel relaxed at the dentist. We recommend a first visit within six months of the first tooth or by age one.",
     treatments: [
-      { name: "Children's Dentistry", slug: "childrens-dentistry", note: "Gentle checkups, cleanings, fluoride, and sealants for kids of all ages." },
-      { name: "First visit by age one", slug: "childrens-dentistry", note: "Early visits build healthy habits and catch problems when they're small." },
-      { name: "Kid-friendly care", slug: "childrens-dentistry", note: "A calm, positive experience so kids look forward to coming back." }
+      { name: "Children's Dentistry", slug: "childrens-dentistry", note: "Gentle checkups, cleanings, fluoride, and sealants for kids of all ages." }
     ]
   },
   {
@@ -210,11 +208,6 @@ export const serviceCategories: ServiceCategory[] = [
         name: "Oral Conscious Sedation",
         slug: "sedation-dentistry-services",
         note: "A deeper level of relaxation while you're still awake, ideal for dental anxiety or longer appointments."
-      },
-      {
-        name: "Anxiety-free care",
-        slug: "sedation-dentistry-services",
-        note: "Helps your body relax so local anesthesia works better and time in the chair feels shorter."
       }
     ]
   }
@@ -325,7 +318,6 @@ export const visitFlow = [
 export const firstVisit = [
   "Comprehensive oral examination",
   "Full-mouth digital X-rays",
-  "Oral cancer screening",
   "Oral hygiene instruction",
   "Professional teeth cleaning",
   "One-on-one consultation with Dr. Gary"

@@ -19,7 +19,6 @@ yarn-error.log*
 Thumbs.db
 
 # IDE / local tooling
-.claude/
 .cursor/
 .vscode/
 .idea/
